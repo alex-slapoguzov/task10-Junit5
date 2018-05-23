@@ -1,0 +1,18 @@
+{
+  "cartName": "igor-cart",
+  "realItems": [
+    {
+      "weight": 1720.0,
+      "name": "Nissan",
+      "price": 25300.0
+    }
+  ],
+  "virtualItems": [
+    {
+      "sizeOnDisk": 150.0,
+      "name": "License",
+      "price": 50.0
+    }
+  ],
+  "total": 30420.0
+}
