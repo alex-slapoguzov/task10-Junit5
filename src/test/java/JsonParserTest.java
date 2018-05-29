@@ -1,4 +1,8 @@
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,12 +14,10 @@ import shop.Cart;
 import java.io.File;
 
 
-public class JsonParserTests {
-
+public class JsonParserTest {
 
     private Parser jsonParser;
     private Cart cart;
-
 
     @BeforeEach
     void setUp() {
@@ -37,7 +39,7 @@ public class JsonParserTests {
     }
 
     @Nested
-    class writeToFileTests {
+    class writeToFileTest {
         @ParameterizedTest
         @ValueSource(strings = {"alexey-cart", "111BBvv6", "!@#$%^&"})
         void writeToFileIsFilePresentPositive(String cartName) {
@@ -71,12 +73,10 @@ public class JsonParserTests {
 
             Assertions.assertTrue(isFileNotEmpty(fileName), "File is empty!");
         }
-
-
     }
 
     @Nested
-    class readFromFileTests {
+    class readFromFileTest {
 
         @ParameterizedTest
         @CsvSource({"src/test/resources/andrew-cart.json, igor-cart, andrew-cart, 38445.479999999996", "src/main/resources/eugen-cart.json, igor-cart, eugen-cart, 26560.68"})
@@ -87,7 +87,6 @@ public class JsonParserTests {
 
             cart = jsonParser.readFromFile(new File(path));
 
-
             Assertions.assertAll(
                     () -> Assertions.assertNotEquals(firstCartName, cart.getCartName()),
                     () -> Assertions.assertEquals(cartName, cart.getCartName()),
@@ -95,13 +94,12 @@ public class JsonParserTests {
                     () -> Assertions.assertNotEquals(firsTotalPrice, cart.getTotalPrice()),
                     () -> Assertions.assertEquals(totalPrice, cart.getTotalPrice())
             );
-
         }
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"src/test/resources/text.csv", "src/main/resources/andrew-cart.jso", "eugen-cart", "src/test/resources/map.txt", "src/main/resources/eugen-cart"})
-    void readFromFileIncorrectTypeExceptionTests(String fileName) {
+    void readFromFileIncorrectTypeExceptionTest(String fileName) {
         File file = new File(fileName);
         Throwable throwable = Assertions.assertThrows(parser.NoSuchFileException.class, () ->
                 jsonParser.readFromFile(file));
@@ -111,21 +109,11 @@ public class JsonParserTests {
 
     public boolean isFilePresent(String name) {
         File file = new File("src/main/resources/" + name);
-        if (file.exists()) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.exists();
     }
 
     public boolean isFileNotEmpty(String name) {
         File file = new File("src/main/resources/" + name);
-        if (file.length() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.length() > 0;
     }
-
-
 }

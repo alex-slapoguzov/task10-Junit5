@@ -3,11 +3,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import shop.RealItem;
 
-public class RealItemTests {
-
+public class RealItemTest {
 
     private RealItem realItem;
-
 
     @ParameterizedTest
     @CsvSource({"Class: class shop.RealItem; Name: Audi; Price: 32026.9; Weight: 1560.0, Audi, 32026.9, 1560",

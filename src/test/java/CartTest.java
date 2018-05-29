@@ -11,13 +11,12 @@ import shop.VirtualItem;
 import java.io.File;
 
 
-public class CartTests {
+public class CartTest {
 
     private Cart cart;
     private RealItem realItem;
     private VirtualItem virtualItem;
     private Parser parser;
-
 
     @ParameterizedTest
     @CsvSource({"src\\test\\resources\\andrew-cart.json, 38445.48", "src\\test\\resources\\eugen-cart.json, 26560.68"})
@@ -27,20 +26,16 @@ public class CartTests {
         Assertions.assertEquals(totalPrice, cart.getTotalPrice(), 0.1);
     }
 
-
     @ParameterizedTest
     @CsvFileSource(resources = "\\index.csv")
     void getTotalPriceWithDataPositiveTest(double priceRealItem, double priceVirtualItem, double totalPrice) {
-
         cart = new Cart("igor-cart");
 
         realItem = new RealItem();
         virtualItem = new VirtualItem();
 
-
         realItem.setPrice(priceRealItem);
         virtualItem.setPrice(priceVirtualItem);
-
 
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);

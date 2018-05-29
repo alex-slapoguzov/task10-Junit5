@@ -3,11 +3,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import shop.VirtualItem;
 
-public class VirtualItemTests {
-
+public class VirtualItemTest {
 
     private VirtualItem virtualItem;
-
 
     @ParameterizedTest
     @CsvSource({"Class: class shop.VirtualItem; Name: Windows; Price: 11.0; Size on disk: 20000.0, Windows, 11.0, 20000.0",
@@ -20,6 +18,5 @@ public class VirtualItemTests {
         virtualItem.setSizeOnDisk(size);
 
         Assertions.assertEquals(rightValue, virtualItem.toString());
-
     }
 }
