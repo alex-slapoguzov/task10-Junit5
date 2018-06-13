@@ -30,5 +30,6 @@ public class Main {
 
         Cart eugenCart = parser.readFromFile(new File("src/main/resources/eugen-cart.json"));
         eugenCart.showItems();
+
     }
 }
